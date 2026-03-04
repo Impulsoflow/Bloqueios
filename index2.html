@@ -1,0 +1,371 @@
+        // CONFIGURAÇÃO DOS 9 MÓDULOS DE BLOQUEIOS
+        const moduleConfig = {
+            pais: { label: "Pais Ditadores", class: "color-pais", desc: "Reflete dinâmicas de autoritarismo vividas na infância, gerando necessidade de agradar, insegurança e medo de confrontos." },
+            rejeicao: { label: "Rejeição", class: "color-rejeicao", desc: "Reflete sentimento de exclusão, dificuldade em relacionamentos e o medo profundo do abandono ou não aceitação." },
+            autoimagem: { label: "Autoimagem", class: "color-autoimagem", desc: "Mede a percepção de valor próprio, a tendência à comparação constante e o forte sentimento de inadequação." },
+            depressao: { label: "Depressão e Ansiedade", class: "color-depressao", desc: "Avalia o excesso de foco no passado (mágoas/ressentimentos) e no futuro (preocupações excessivas)." },
+            culpa: { label: "Culpa", class: "color-culpa", desc: "Analisa a tendência de carregar problemas alheios, auto-sacrifício para agradar e autocobrança desmedida." },
+            criticas: { label: "Críticas", class: "color-criticas", desc: "Mede o hábito de julgamento, atritos desnecessários e o perfeccionismo rígido como mecanismo de defesa." },
+            procrastinacao: { label: "Procrastinação", class: "color-procrastinacao", desc: "Avalia a dificuldade de priorização, o adiamento crônico de tarefas e falhas na execução e cumprimento de prazos." },
+            timidez: { label: "Timidez", class: "color-timidez", desc: "Reflete o pavor da exposição, introversão limitante e a perda de oportunidades significativas por receio social." },
+            vitimismo: { label: "Vitimismo", class: "color-vitimismo", desc: "Analisa a forte necessidade de aprovação, desconfiança nas pessoas e a tendência de se colocar em posição de alvo." }
+        };
+
+        // ESTRUTURA DINÂMICA DAS 36 PERGUNTAS (9 Módulos x 4 Perguntas)
+        const questions = [
+            // PAIS DITADORES
+            { module: "pais", text: "Seu lar, quando criança, era um ambiente seguro?", options: [ { l: "(a) Sim.", v: 0 }, { l: "(b) Sim, mas....", v: 1 }, { l: "(c) Às vezes era.", v: 2 }, { l: "(d) Não.", v: 3 }, { l: "(e) Não, sofri muito.", v: 4 } ] },
+            { module: "pais", text: "Seus pais eram autoritários?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Aconteceu mais de uma vez.", v: 2 }, { l: "(d) Sim, mas me afetou.", v: 3 }, { l: "(e) Sim, e sofro as consequências até hoje.", v: 4 } ] },
+            { module: "pais", text: "Você se sente pressionado(a) a agradar seus pais?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "pais", text: "Você tem medo de confrontar seus pais?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+
+            // REJEIÇÃO
+            { module: "rejeicao", text: "Você se sente rejeitado(a) pelos outros?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "rejeicao", text: "Você tem dificuldade em manter relacionamentos?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "rejeicao", text: "Você teme ser abandonado(a)?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "rejeicao", text: "Você já se sentiu pequeno(a) demais para receber amor?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            
+            // AUTOIMAGEM
+            { module: "autoimagem", text: "Você deixa os outros decidirem por você?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "autoimagem", text: "Você duvida do seu próprio valor?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "autoimagem", text: "Você se compara com os outros?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "autoimagem", text: "Você se sente inadequado(a)?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+
+            // DEPRESSÃO E ANSIEDADE
+            { module: "depressao", text: "Você vive preocupado(a) com o passado?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "depressao", text: "Você tem dificuldade em perdoar?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "depressao", text: "Você se preocupa excessivamente com o futuro?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "depressao", text: "Você se sente ansioso(a) sem motivo aparente?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Frequentemente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+
+            // CULPA
+            { module: "culpa", text: "Você costuma pegar para si o problema de outros?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes, aconteceu comigo.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "culpa", text: "Você se acha na obrigação de resolver todos os problemas?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "culpa", text: "Você se prejudica para manter a sua palavra?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Já aconteceu algumas vezes.", v: 2 }, { l: "(d) Já aconteceu muitas vezes.", v: 3 }, { l: "(e) Sim e isso me prejudica até hoje.", v: 4 } ] },
+            { module: "culpa", text: "Você se sente culpado quando comete algum erro?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre e isso me trava.", v: 4 } ] },
+
+            // CRÍTICAS
+            { module: "criticas", text: "Você gosta de entrar em discussões?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Acontece comigo às vezes.", v: 2 }, { l: "(d) Muitas vezes.", v: 3 }, { l: "(e) Sim, acontece constantemente.", v: 4 } ] },
+            { module: "criticas", text: "Você gosta de falar dos outros?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Só faço críticas construtivas.", v: 2 }, { l: "(d) Muitas vezes não consigo dominar a minha língua.", v: 3 }, { l: "(e) Sim, tenho esse hábito.", v: 4 } ] },
+            { module: "criticas", text: "Você gosta de fazer críticas?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Quase sempre para ajudar as pessoas.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "criticas", text: "Você tem mania de ser perfeccionista?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Acontece comigo às vezes.", v: 2 }, { l: "(d) Acontece comigo constantemente.", v: 3 }, { l: "(e) Sim, o tempo todo.", v: 4 } ] },
+
+            // PROCRASTINAÇÃO
+            { module: "procrastinacao", text: 'Com que frequência você usa a frase: "não preciso fazer hoje o que eu posso deixar para amanhã"?', options: [ { l: "(a) Nunca.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Penso às vezes.", v: 2 }, { l: "(d) Com muita frequência.", v: 3 }, { l: "(e) Sempre e sofro muito com isso.", v: 4 } ] },
+            { module: "procrastinacao", text: "Como você escolhe suas prioridades?", options: [ { l: "(a) Pela importância.", v: 0 }, { l: "(b) Pela urgência.", v: 1 }, { l: "(c) Pela dificuldade.", v: 2 }, { l: "(d) Pela facilidade.", v: 3 }, { l: "(e) Fico ansioso e tenho muita dúvida na hora de escolher.", v: 4 } ] },
+            { module: "procrastinacao", text: "Você costuma cumprir aquilo que fala?", options: [ { l: "(a) Sim.", v: 0 }, { l: "(b) Sempre que possível.", v: 1 }, { l: "(c) Algumas vezes esqueço.", v: 2 }, { l: "(d) Não, na maioria das vezes.", v: 3 }, { l: "(e) Nunca consigo, é uma grande dificuldade para mim.", v: 4 } ] },
+            { module: "procrastinacao", text: "Você costuma cumprir prazos?", options: [ { l: "(a) Sim, sempre.", v: 0 }, { l: "(b) Sempre que possível.", v: 1 }, { l: "(c) Algumas vezes esqueço.", v: 2 }, { l: "(d) Não, na maioria das vezes.", v: 3 }, { l: "(e) Quase nunca consigo.", v: 4 } ] },
+
+            // TIMIDEZ
+            { module: "timidez", text: "A timidez é um tabu pra você?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes, aconteceu comigo.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre e isso me trava até hoje.", v: 4 } ] },
+            { module: "timidez", text: "Você já perdeu oportunidades por ser muito tímido?", options: [ { l: "(a) Não sou tímido.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes, aconteceu comigo.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre e isso me trava até hoje.", v: 4 } ] },
+            { module: "timidez", text: "Você se acha uma pessoa introvertida?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Algumas vezes.", v: 2 }, { l: "(d) Sim. frequentemente.", v: 3 }, { l: "(e) Sempre, não me sinto confortável em público.", v: 4 } ] },
+            { module: "timidez", text: "Você tem dificuldades para tirar fotos e gravar vídeos?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+
+            // VITIMISMO
+            { module: "vitimismo", text: "Você costuma se achar o patinho feio?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "vitimismo", text: "Você se sente culpado por todas as coisas que dão errado?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "vitimismo", text: "Você tem necessidade de aprovação?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] },
+            { module: "vitimismo", text: "Você tem problema em confiar em pessoas?", options: [ { l: "(a) Não.", v: 0 }, { l: "(b) Raramente.", v: 1 }, { l: "(c) Às vezes.", v: 2 }, { l: "(d) Habitualmente.", v: 3 }, { l: "(e) Sempre.", v: 4 } ] }
+        ];
+
+        // Estado do App
+        let userData = { name: "", email: "", phone: "" };
+        let currentQuestionIndex = 0;
+        let answers = new Array(questions.length).fill(null);
+
+        function startTest() {
+            const nameInput = document.getElementById('user-name');
+            const emailInput = document.getElementById('user-email');
+            const phoneInput = document.getElementById('user-phone');
+            const errorMsg = document.getElementById('start-error');
+
+            if (!nameInput.checkValidity() || !emailInput.checkValidity() || !phoneInput.checkValidity()) {
+                errorMsg.classList.remove('hidden');
+                errorMsg.classList.add('fade-in');
+                return;
+            }
+
+            userData.name = nameInput.value.trim();
+            userData.email = emailInput.value.trim();
+            userData.phone = phoneInput.value.trim();
+
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('quiz-screen').classList.add('fade-in');
+            
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQuestionIndex];
+            const modInfo = moduleConfig[q.module];
+            
+            // Header
+            document.getElementById('progress-text').innerText = `Pergunta ${currentQuestionIndex + 1} de ${questions.length}`;
+            document.getElementById('module-badge').innerText = modInfo.label;
+            
+            // Progresso
+            const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            // Animação Container
+            const qContainer = document.getElementById('question-container');
+            qContainer.classList.remove('fade-in');
+            void qContainer.offsetWidth;
+            qContainer.classList.add('fade-in');
+
+            document.getElementById('question-text').innerText = q.text;
+            document.getElementById('quiz-error').classList.add('hidden');
+
+            // Renderizar Opções Específicas da Pergunta Atual
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt) => {
+                const btn = document.createElement('div');
+                const isSelected = answers[currentQuestionIndex] === opt.v;
+                
+                btn.className = `option p-4 rounded-xl text-left pl-6 font-semibold text-slate-700 select-none ${isSelected ? 'selected' : ''}`;
+                btn.innerText = opt.l;
+                btn.onclick = () => updateSelection(opt.v, btn);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Botões Navegação
+            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+            
+            const btnNext = document.getElementById('btn-next');
+            if (currentQuestionIndex === questions.length - 1) {
+                btnNext.innerHTML = 'Finalizar Diagnóstico <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                btnNext.classList.remove('btn-primary');
+                btnNext.classList.add('bg-gradient-to-r', 'from-emerald-600', 'to-teal-700');
+            } else {
+                btnNext.innerHTML = 'Próxima <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
+                btnNext.className = 'btn-primary px-6 md:px-8 py-3 rounded-xl text-white font-semibold flex items-center gap-2 hover:opacity-90 shadow-md ml-auto';
+            }
+        }
+
+        function updateSelection(value, selectedElement) {
+            answers[currentQuestionIndex] = value;
+            
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+                opt.classList.add('text-slate-700');
+            });
+
+            selectedElement.classList.add('selected');
+            document.getElementById('quiz-error').classList.add('hidden');
+            
+            setTimeout(() => nextQuestion(), 350);
+        }
+
+        function nextQuestion() {
+            if (answers[currentQuestionIndex] === null) {
+                const error = document.getElementById('quiz-error');
+                error.classList.remove('hidden');
+                error.classList.add('fade-in');
+                return;
+            }
+
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            } else {
+                processResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function processResults() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('loading-overlay').classList.remove('hidden');
+            
+            setTimeout(() => calculateAndShowResults(), 1500);
+        }
+
+        function calculateAndShowResults() {
+            document.getElementById('loading-overlay').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            document.getElementById('result-screen').classList.add('fade-in');
+            
+            document.getElementById('result-name').innerText = userData.name.split(' ')[0];
+
+            let scores = {};
+            let totalPoints = 0;
+            // 4 perguntas por módulo * peso máximo 4 = 16 pontos máx. por módulo
+            const maxPointsPerModule = 16; 
+            // 36 perguntas * 4 = 144 pontos máx totais
+            const maxTotalPoints = questions.length * 4;
+
+            Object.keys(moduleConfig).forEach(key => scores[key] = 0);
+
+            answers.forEach((ans, idx) => {
+                const mod = questions[idx].module;
+                scores[mod] += ans;
+                totalPoints += ans;
+            });
+
+            const chartsContainer = document.getElementById('charts-container');
+            const explanationsContainer = document.getElementById('dynamic-explanations');
+            chartsContainer.innerHTML = '';
+            explanationsContainer.innerHTML = '';
+
+            Object.keys(moduleConfig).forEach(key => {
+                const mod = moduleConfig[key];
+                const score = scores[key];
+                const percentage = Math.round((score / maxPointsPerModule) * 100);
+                
+                // Gráficos
+                const barHtml = `
+                    <div class="mb-5">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm md:text-base font-bold text-slate-800">${mod.label}</span>
+                            <span class="text-sm font-bold text-slate-500">${percentage}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-4 shadow-inner">
+                            <div class="fill ${mod.class}" data-percent="${percentage}%" style="width: 0%; transition-delay: 0.2s;"></div>
+                        </div>
+                    </div>
+                `;
+                chartsContainer.insertAdjacentHTML('beforeend', barHtml);
+
+                // Textos
+                let interpretation = "";
+                if (percentage >= 70) {
+                    interpretation = `<span class="text-red-600 font-bold">Atenção Crítica:</span> Nível de bloqueio elevado. `;
+                } else if (percentage >= 40) {
+                    interpretation = `<span class="text-yellow-600 font-bold">Alerta Moderado:</span> Afeta sua performance em alguns níveis. `;
+                } else {
+                    interpretation = `<span class="text-emerald-600 font-bold">Nível Saudável:</span> Bloqueio sob controle ou inexistente. `;
+                }
+
+                const textHtml = `
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-yellow-100">
+                        <h4 class="font-bold text-slate-800 border-b border-slate-100 pb-2 mb-2">${mod.label}</h4>
+                        <p class="text-sm md:text-base text-slate-600">${interpretation} ${mod.desc}</p>
+                    </div>
+                `;
+                explanationsContainer.insertAdjacentHTML('beforeend', textHtml);
+            });
+
+            // Média Total
+            const totalPercentage = Math.round((totalPoints / maxTotalPoints) * 100);
+            document.getElementById('total-score-text').innerText = `${totalPercentage}%`;
+            
+            setTimeout(() => {
+                document.querySelectorAll('#result-screen .fill').forEach((el) => {
+                    el.style.width = el.getAttribute('data-percent');
+                });
+                document.getElementById('total-score-fill').style.width = `${totalPercentage}%`;
+            }, 100);
+        }
+
+        async function generateAndSendPDF() {
+            const btn = document.querySelector('.btn-primary');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div> Gerando Relatório...`;
+            btn.disabled = true;
+
+            try {
+                const scoreSection = document.getElementById('score-section');
+                const canvas = await html2canvas(scoreSection, { 
+                    scale: 2, backgroundColor: "#ffffff"
+                });
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+                const pageWidth = doc.internal.pageSize.getWidth();
+                let y = 20;
+
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(15, 23, 42); 
+                doc.setFontSize(22);
+                doc.text("Mapeamento: Bloqueios Universais", pageWidth / 2, y, { align: 'center' });
+                y += 10;
+                
+                doc.setFontSize(12);
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(71, 85, 105);
+                doc.text(`Gerado para: ${userData.name}`, 15, y);
+                y += 6;
+                doc.text(`E-mail: ${userData.email} | WhatsApp: ${userData.phone}`, 15, y);
+                y += 10;
+
+                const imgWidth = pageWidth - 30;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                doc.addImage(imgData, 'JPEG', 15, y, imgWidth, imgHeight);
+                y += imgHeight + 15;
+
+                if (y > 250) { doc.addPage(); y = 20; }
+
+                doc.setFontSize(16);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(15, 23, 42);
+                doc.text("Análise Detalhada:", 15, y);
+                y += 10;
+
+                doc.setFontSize(11);
+                
+                const explanations = document.querySelectorAll('#dynamic-explanations > div');
+                explanations.forEach(div => {
+                    if (y > 270) { doc.addPage(); y = 20; }
+                    
+                    const title = div.querySelector('h4').innerText;
+                    const textContent = div.querySelector('p').innerText;
+
+                    doc.setFont("helvetica", "bold");
+                    doc.text(title, 15, y);
+                    y += 6;
+                    
+                    doc.setFont("helvetica", "normal");
+                    const splitText = doc.splitTextToSize(textContent, pageWidth - 30);
+                    doc.text(splitText, 15, y, { lineHeightFactor: 1.5 });
+                    y += (splitText.length * 6) + 6;
+                });
+
+                if (y > 270) { doc.addPage(); y = 20; }
+                y += 15;
+                doc.setFont("times", "italic");
+                doc.setTextColor(202, 138, 4); 
+                doc.setFontSize(20);
+                doc.text("Instituto Impulso Coaching", pageWidth / 2, y, { align: 'center' });
+
+                const safeName = userData.name.replace(/[^a-zA-Z0-9]/g, '_');
+                doc.save(`Bloqueios_Universais_${safeName}.pdf`);
+
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+
+                const subject = encodeURIComponent(`Diagnóstico de Bloqueios - ${userData.name}`);
+                const body = encodeURIComponent(
+                    `Olá equipe do Instituto Impulso,\n\n` +
+                    `Acabei de realizar o Mapeamento de Bloqueios Universais.\n` +
+                    `Nome: ${userData.name}\n` +
+                    `WhatsApp: ${userData.phone}\n\n` +
+                    `⚠️ ANEXEI NESTE E-MAIL O PDF GERADO.\n\n` +
+                    `Fico no aguardo do contato.\n` +
+                    `Atenciosamente,\n${userData.name}`
+                );
+
+                setTimeout(() => {
+                    window.location.href = `mailto:contato@institutoimpulso.com.br?subject=${subject}&body=${body}`;
+                }, 1000);
+
+            } catch (error) {
+                console.error("Erro no PDF:", error);
+                alert("Erro ao gerar o PDF. Tente novamente.");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
